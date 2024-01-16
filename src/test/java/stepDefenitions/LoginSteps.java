@@ -41,4 +41,13 @@ public class LoginSteps extends CommonMethods {
        Assert.assertEquals("Warning: No match for E-Mail Address and/or Password.", login.invalidCredentialsMessage.getText());
     }
 
+    @Then("User click on logout button")
+    public void user_click_on_logout_button() {
+       doClick(account.logout);
+    }
+    @Then("User see logout confirmation message")
+    public void user_see_logout_confirmation_message() {
+       Assert.assertEquals("Account Logout",account.logoutConfirmationMessage.getText());
+    }
+
 }

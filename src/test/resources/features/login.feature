@@ -8,6 +8,16 @@ Feature: Login Functionalities
     And Click on login button
     Then User enter into account
 
+  @regression
+    Scenario: Successful logout
+      Given User click on MyAccount then Login Button
+      When User enter valid login and password
+      And Click on login button
+      Then User enter into account
+      Then User click on logout button
+      Then User see logout confirmation message
+
+
   @regression @login
   Scenario Outline: Login with invalid credentials
     Given User click on MyAccount then Login Button
