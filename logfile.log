@@ -179,3 +179,12 @@
 2024-01-16 17:33:04 INFO  Log:21 - ######################################
 2024-01-16 17:33:04 INFO  Log:22 - ######################################
 2024-01-16 17:33:04 INFO  Log:23 - #################This test case is finished#####################
+2024-01-16 18:19:18 INFO  Log:14 - *****************************
+2024-01-16 18:19:18 INFO  Log:15 - *****************************
+2024-01-16 18:19:18 INFO  Log:16 - ********This is the beginning of my Test case**********
+2024-01-16 18:19:18 INFO  Log:27 - My test case is executing right now
+2024-01-16 18:19:18 INFO  Log:31 - My test case might have some trivial issues
+2024-01-16 18:19:19 INFO  Log:27 - This test case is about to get completed
+2024-01-16 18:19:19 INFO  Log:21 - ######################################
+2024-01-16 18:19:19 INFO  Log:22 - ######################################
+2024-01-16 18:19:19 INFO  Log:23 - #################This test case is finished#####################

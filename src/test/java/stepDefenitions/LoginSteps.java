@@ -38,16 +38,29 @@ public class LoginSteps extends CommonMethods {
 
     @Then("User see error message")
     public void user_see_error_message() {
-       Assert.assertEquals("Warning: No match for E-Mail Address and/or Password.", login.invalidCredentialsMessage.getText());
+        Assert.assertEquals("Warning: No match for E-Mail Address and/or Password.", login.invalidCredentialsMessage.getText());
     }
 
     @Then("User click on logout button")
     public void user_click_on_logout_button() {
-       doClick(account.logout);
+        doClick(account.logout);
     }
+
     @Then("User see logout confirmation message")
     public void user_see_logout_confirmation_message() {
-       Assert.assertEquals("Account Logout",account.logoutConfirmationMessage.getText());
+        Assert.assertEquals("Account Logout", account.logoutConfirmationMessage.getText());
     }
+
+    @When("User click on Forgotten Password link")
+    public void user_click_on_forgotten_password_link() {
+        doClick(login.forgotPassword);
+    }
+
+    @Then("User should be taken to Forgotten Password page")
+    public void user_should_be_taken_to_forgotten_password_page() {
+        Assert.assertEquals("Forgot Your Password?", account.forgotPasswordLogo.getText());
+        Assert.assertEquals("Your E-Mail Address", account.enterYourEmailLogo.getText());
+    }
+
 
 }

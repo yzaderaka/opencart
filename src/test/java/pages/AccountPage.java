@@ -56,5 +56,10 @@ public class AccountPage extends CommonMethods {
     @FindBy(xpath = "//h1[normalize-space()='Account Logout']")
     public WebElement logoutConfirmationMessage;
 
+    @FindBy(xpath = "//h1[normalize-space()='Forgot Your Password?']")
+    public WebElement forgotPasswordLogo;
+
+    @FindBy(xpath = "//legend[normalize-space()='Your E-Mail Address']")
+    public WebElement enterYourEmailLogo;
 
 }
