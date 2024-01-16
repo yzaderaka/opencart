@@ -1,5 +1,6 @@
 package utils;
 
+import com.github.javafaker.Faker;
 import stepDefenitions.PageInitializier;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -25,6 +26,7 @@ import static stepDefenitions.PageInitializier.initializePageObjects;
 public class CommonMethods extends PageInitializier {
 
     public static WebDriver driver;
+    public static Faker faker = new Faker();
 
     public static void openBrowserAndLaunchApplication() {
         ConfigReader.readProperties();
@@ -35,10 +37,10 @@ public class CommonMethods extends PageInitializier {
                 ChromeOptions ops = new ChromeOptions();
                 ops.addArguments("--no-sandbox");
                 ops.addArguments("--remote-allow-origins=*");
-                if(ConfigReader.getPropertyValue("Headless").equals("true")){
+                if (ConfigReader.getPropertyValue("Headless").equals("true")) {
                     ops.addArguments("--headless=new");
                 }
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(ops);
                 break;
 
             case "Firefox":
@@ -69,12 +71,12 @@ public class CommonMethods extends PageInitializier {
     }
 
 
-    public static void closeBrowser()
-    {
+    public static void closeBrowser() {
         Log.info("This test case is about to get completed");
         Log.endTestCase("This test case is finished");
         driver.quit();
     }
+
     public static WebDriverWait getWait() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         return wait;
@@ -118,19 +120,18 @@ public class CommonMethods extends PageInitializier {
 
     //========================SCREENSHOT ===============================
 
-    public static byte[] takeScreenshot(String imageName)
-    {
+    public static byte[] takeScreenshot(String imageName) {
         // This casts the webDriver instance 'driver' to TakeScreenshot Interface
-        TakesScreenshot ts = (TakesScreenshot)driver;
+        TakesScreenshot ts = (TakesScreenshot) driver;
 
         //This captures the screenshot and stores it as byte array
-        byte[] picBytes=ts.getScreenshotAs(OutputType.BYTES);
+        byte[] picBytes = ts.getScreenshotAs(OutputType.BYTES);
 
         //This captures the screenshot and stores it as a file in the sourceFile variable
-        File sourcePath=ts.getScreenshotAs(OutputType.FILE);
+        File sourcePath = ts.getScreenshotAs(OutputType.FILE);
 
         try {
-            FileUtils.copyFile(sourcePath, new File(Constants.SCREENSHOT_FILEPATH+imageName+getTimeStamp("yyyy-MM-dd-HH-mm-ss")+".png"));
+            FileUtils.copyFile(sourcePath, new File(Constants.SCREENSHOT_FILEPATH + imageName + getTimeStamp("yyyy-MM-dd-HH-mm-ss") + ".png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -138,8 +139,7 @@ public class CommonMethods extends PageInitializier {
     }
 
 
-    public  static  String getTimeStamp(String pattern)
-    {
+    public static String getTimeStamp(String pattern) {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         return sdf.format(date);

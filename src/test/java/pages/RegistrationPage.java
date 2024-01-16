@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.CommonMethods;
+import utils.ConfigReader;
 
 public class RegistrationPage extends CommonMethods {
     public RegistrationPage() {
@@ -35,10 +36,16 @@ public class RegistrationPage extends CommonMethods {
     @FindBy(xpath = "//h1[normalize-space()='Your Account Has Been Created!']")
     public WebElement createdAccountConfirmation;
 
-    @FindBy(xpath = "//div[@class='pull-right']//a[normalize-space()='Continue']")
+    @FindBy(xpath = "//a[@class='btn btn-primary']")
     public WebElement continueBtnInAccount;
 
-    public void registerNewCustomer(){
+    public void registerNewCustomer() {
+        sendText(registration.firstName, faker.name().firstName());
+        sendText(registration.lastName, faker.name().lastName());
+        sendText(registration.email,faker.internet().safeEmailAddress());
+        sendText(registration.telephone,faker.phoneNumber().cellPhone());
+        sendText(registration.password, ConfigReader.getPropertyValue("password"));
+        sendText(registration.confirmPassword,ConfigReader.getPropertyValue("confirmPassword"));
 
     }
 }

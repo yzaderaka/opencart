@@ -21,4 +21,10 @@ public class LoginPage extends CommonMethods {
 
     @FindBy(xpath = "//input[@value='Login']")
     public WebElement loginBtn;
+
+    @FindBy(xpath = "//h2[normalize-space()='My Account']")
+    public WebElement myAccount;
+
+    @FindBy(xpath = "//div[@class='alert alert-danger alert-dismissible']")
+    public WebElement invalidCredentialsMessage;
 }
